@@ -12,7 +12,7 @@ export interface AppState {
 }
 
 export const initialState: AppState = {
-  username: 'soumen',
+  username: '',
   cities: [],
   selectedCity: { abbr: '', name: '', capital: '', lat: '', long: '' },
   searchedCities: [],

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { Store } from '@ngrx/store'
-import { map, exhaustMap, withLatestFrom, of, catchError } from 'rxjs'
+import { map, exhaustMap, withLatestFrom, of, catchError, tap } from 'rxjs'
 import { CityService } from '../services/cities.service';
 import { HistoryService } from '../services/history.service'
 import { WeatherService } from '../services/weather.service';
@@ -14,17 +14,27 @@ import {
   getSearchedCitiesSuccess,
   getSearchedCitiesFail,
   setUsername,
-  getWeatherData,
   getWeatherDataSuccess,
   getWeatherDataFail,
   createSearchedCity,
   createSearchedCityFail,
-  setSelectedCity
+  setSelectedCity,
+  checkUsername
 } from './app.actions'
 import { selectSelectedCity, selectUserName } from './app.selectors'
 
 @Injectable()
 export class AppEffects {
+
+  checkUsername$ = createEffect(() => this.actions$.pipe(
+    ofType(checkUsername),
+    withLatestFrom(this.store.select(selectUserName)),
+    tap(([, username]) => {
+      if (!username) {
+        this.router.navigateByUrl('/')
+      }
+    })
+  ), { dispatch: false })
 
   setUsername$ = createEffect(() => this.actions$.pipe(
     ofType(setUsername),

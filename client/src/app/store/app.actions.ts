@@ -3,6 +3,8 @@ import { City } from '../models/city.model'
 import { SearchedCity } from '../models/history.model'
 import { WeatherData } from '../models/weather.model'
 
+export const checkUsername = createAction('[App] Check username valid')
+
 export const getUsername = createAction('[App] Get Username')
 export const setUsername = createAction('[App] Set Username', props<{ username: string }>())
 
@@ -21,6 +23,5 @@ export const createSearchedCity = createAction('[App] Create search history', pr
 export const createSearchedCitySuccess = createAction('[App] Create search history success', props<{ searchedCity: SearchedCity }>())
 export const createSearchedCityFail = createAction('[App] Create search history fail')
 
-export const getWeatherData = createAction('[App] Get weather data')
 export const getWeatherDataSuccess = createAction('[App] Get weather data success', props<{ weatherData: WeatherData }>())
 export const getWeatherDataFail = createAction('[App] Get weather data fail')
