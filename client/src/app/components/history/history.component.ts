@@ -22,7 +22,7 @@ export class HistoryComponent implements OnInit {
   }
 
   setSelectedCity(selectedCity: City, event: Event): void {
-    event.preventDefault();
+    event.preventDefault()
     this.store.dispatch(setSelectedCity({ selectedCity }))
   }
 }
