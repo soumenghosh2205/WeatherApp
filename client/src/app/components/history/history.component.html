@@ -1,0 +1,18 @@
+<div class="w3-container">
+  <h2>Search History</h2>
+  <ng-container *ngIf="searchedCities$ | async as searchedCities">
+    <ng-container *ngIf="searchedCities.length; else noSearchHistory">
+      <ul class="history-results">
+        <li *ngFor="let city of searchedCities">
+          <a (click)="setSelectedCity(city, $event)" href="#">{{ city.capital }}, {{ city.name }} <small>({{city.lat}}E, {{city.long}}N)</small></a>
+        </li>
+      </ul>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #noSearchHistory>
+    <ul class="history-results">
+      <li>No search history found</li>
+    </ul>
+  </ng-template>
+</div>

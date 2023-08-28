@@ -1,0 +1,20 @@
+.search-history-container {
+  display: flex;
+}
+
+.search-container {
+  flex: 1;
+  height: 400px;
+  overflow-y: auto;
+}
+
+.history-container {
+  flex: 1;
+  height: 400px;
+  overflow-y: auto;
+}
+
+.weather-container {
+  flex: 1;
+  width: 100%;
+}

@@ -1,0 +1,52 @@
+<ng-container *ngIf="weatherData$ | async as weatherData">
+  <h2>Weather information</h2>
+  <ng-container *ngIf="(selectedCity$ | async)?.abbr; else noWeatherData">
+    <h3>Today's Temperature (&deg;C max/min) {{ todayTempMinMax.max }}/{{ todayTempMinMax.min }}</h3>
+    <div class="weather-data-container">
+      <div class="hourly-temp w3-margin w3-padding">
+        <h3 class="w3-center">Hourly</h3>
+        <div class="time-temp-container">
+          <div class="time-temp">
+            <div class="time"><b>Day</b></div>
+            <div class="temp"><b>Temp (&deg;C)</b></div>
+            <div class="temp"><b><small>Air Quaity</small></b></div>
+          </div>
+          <div class="time-temp" *ngFor="let data of hourlyData">
+            <div class="time">{{ data.time }}</div>
+            <div class="temp">{{ data.temperature }}</div>
+            <div class="temp">
+              <ng-container *ngIf="data.airQuality < 55">
+                <span class="w3-tag w3-green">Good</span>
+              </ng-container>
+              <ng-container *ngIf="data.airQuality >= 55 && data.airQuality < 70 ">
+                <span class="w3-tag w3-amber">Moderate</span>
+              </ng-container>
+              <ng-container *ngIf="data.airQuality >= 70">
+                <span class="w3-tag w3-red">Bad</span>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="daily-temp w3-margin w3-padding">
+        <h3 class="w3-center">Daily</h3>
+        <div class="time-temp-container">
+          <div class="time-temp">
+            <div class="time"><b>Day</b></div>
+            <div class="temp"><b><small>Temp (&deg;C min/max)</small></b></div>
+            <div class="time"><b><small>Rain (%)</small></b></div>
+          </div>
+          <div class="time-temp" *ngFor="let data of dailyData">
+            <div class="time">{{ data.day }}</div>
+            <div class="temp"><small>{{ data.maxTemp }}/{{ data.minTemp }}</small></div>
+            <div class="temp">{{ data.precipitationProbabilityMax }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #noWeatherData>
+    <p>Please select a city...</p>
+  </ng-template>
+</ng-container>

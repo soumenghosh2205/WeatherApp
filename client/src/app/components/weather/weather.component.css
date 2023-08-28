@@ -1,0 +1,33 @@
+.weather-data-container {
+  display: flex;
+}
+
+.hourly-temp {
+  flex: 50%;
+  overflow-x: auto;
+  border: 1px solid teal;
+}
+
+.daily-temp {
+  flex: 50%;
+  overflow-x: auto;
+  border: 1px solid teal;
+}
+
+.time-temp-container {
+  display: flex;
+}
+
+.time-temp {
+  padding: 5px;
+}
+
+.time-temp .time {
+  padding: 3px;
+  width: max-content;
+}
+
+.time-temp .temp {
+  padding: 3px;
+  width: max-content;
+}

@@ -1,0 +1,8 @@
+<div class="w3-container">
+  <input class="search-bar w3-border-bottom w3-border-teal" [(ngModel)]="searchText" (input)="filterResults()" placeholder="Start typing a city or state name" />
+  <ul class="search-results">
+    <li *ngFor="let city of filteredCities">
+      <a href="#" (click)="setSelectedCity(city, $event)">{{ city.capital }}, {{ city.name }}</a>
+    </li>
+  </ul>
+</div>
